@@ -112,7 +112,21 @@ class Node {
       return newNode; 
     }
 
+    remove(index){
+      if(index < 0 || index >= this.length) return
+      if(index === 0) return this.shift()
+      if(index === this.length-1) return this.pop()
 
+      let foundNode = this.get(index);
+      foundNode.prev.next = foundNode.next;
+      foundNode.next.prev = foundNode.prev
+      foundNode.prev = null;
+      foundNode.next = null;
+
+      this.length--;
+      return foundNode;
+
+    }
 
     print(){
       var arr = [];
@@ -127,15 +141,19 @@ class Node {
   
   const list = new DoublyLinkedList();
   
+
+
   list.push(6);
   list.push(7);
   list.push(8);
   list.push(9);
-  
-  
-  
-  console.log(list.insert(0, 99999))
-  
+  list.push(10);
   
   list.print()
+  
+  
+  console.log(list.remove(2))
+  
+  
+  
   console.log(list);
