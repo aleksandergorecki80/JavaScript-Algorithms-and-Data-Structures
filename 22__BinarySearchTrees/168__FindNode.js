@@ -71,5 +71,5 @@ tree.insert(15)
 
 console.log(tree);
 
-const result = tree.find(200);
+const result = tree.find(20);
 console.log(result);
