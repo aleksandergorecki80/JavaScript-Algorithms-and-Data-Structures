@@ -61,7 +61,19 @@ class Node {
         const data = [];
         const queue = [];
 
+
         queue.push(this.root)
+
+        while(queue.length){
+          const node = queue.shift()
+          data.push(node)
+
+          if(node.left) queue.push(node.left);
+          if(node.right) queue.push(node.right);
+
+        }
+        
+        return data
     }
   }
   
@@ -76,4 +88,4 @@ tree.insert(8);
 tree.insert(20);
 
 
-console.log(tree);
+console.log(tree.breadthFirstSearch());
