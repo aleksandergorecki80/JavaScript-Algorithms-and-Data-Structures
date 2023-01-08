@@ -78,3 +78,5 @@ ER.enqueue("broken arm",2)
 ER.enqueue("glass in foot",3)
 
 console.log(ER)
+
+console.log(ER.dequeue())
