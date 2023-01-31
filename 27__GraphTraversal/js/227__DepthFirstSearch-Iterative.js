@@ -94,9 +94,8 @@ graph.addEdge("D", "E");
 graph.addEdge("D", "F");
 graph.addEdge("E", "F");
 
-  const dfs = graph.depthFirstIterative('A')
+const dfs = graph.depthFirstIterative("A");
 
-  console.log(dfs, ' === dfs')
+console.log(dfs, " === dfs");
 
-console.log(graph, ' === graph');
-
+console.log(graph, " === graph");
