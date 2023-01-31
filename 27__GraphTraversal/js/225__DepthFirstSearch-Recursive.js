@@ -2,6 +2,7 @@ class Graph {
   constructor() {
     this.adjacencyList = {};
   }
+
   addVertex(vertex) {
     if (!this.adjacencyList[vertex]) {
       this.adjacencyList[vertex] = [];
@@ -9,10 +10,12 @@ class Graph {
       console.log(`${vertex} already exists.`);
     }
   }
+
   addEdge(vertex1, vertex2) {
     this.adjacencyList[vertex1].push(vertex2);
     this.adjacencyList[vertex2].push(vertex1);
   }
+
   removeEdge(vertex1, vertex2) {
     this.adjacencyList[vertex1] = this.adjacencyList[vertex1].filter(
       (vertex) => vertex !== vertex2
@@ -21,6 +24,7 @@ class Graph {
         (vertex) => vertex !== vertex1
       );
   }
+  
   removeVertex(vertex){
     while(this.adjacencyList[vertex].length){
         const adjacentVertex = this.adjacencyList[vertex].pop();
@@ -28,9 +32,30 @@ class Graph {
     }
     delete this.adjacencyList[vertex];
   }
+
   depthFirstRecursive(start){
     const result = [];
-    visited = {};
+    const visited = {};
+    const adjacencyList = this.adjacencyList;
+
+    function depthFirstSearch(vertex){
+      if(!vertex) return null;
+      visited[vertex] = true;
+      result.push(vertex);
+
+      adjacencyList[vertex].forEach(neighbor => {
+        if(!visited[neighbor]){
+          return depthFirstSearch(neighbor)
+        }
+      });
+
+    }
+    depthFirstSearch(start);
+
+    console.log(result, ' ==== result')
+    console.log(visited, ' === visited')
+
+    return result
   }
 }
 
@@ -51,5 +76,7 @@ graph.addEdge("D", "E")
 graph.addEdge("D", "F")
 graph.addEdge("E", "F")
 
-console.log(graph)
+const dfs = graph.depthFirstRecursive('A')
+
+console.log(dfs)
 
